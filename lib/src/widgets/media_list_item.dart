@@ -29,6 +29,24 @@ class MediaListItem extends StatelessWidget {
                   constraints: BoxConstraints.expand(
                     height: 55
                   ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        child: Text(media.title,
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis
+                        ),
+                      ),
+                      Container(
+                        child: Text(media.getGenres(),
+                          style: TextStyle(color: Colors.white),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,),
+                      )
+                    ],
+                  ),
                 ),
               )
             ],
