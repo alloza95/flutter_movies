@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_tmdb_app/src/widgets/media_list_item.dart';
 import '../commons/http_request.dart';
 import '../models/media.dart';
 
@@ -29,11 +30,7 @@ class _MediaListState extends State<MediaList> {
       child: ListView.builder(
         itemCount: _media.length,
         itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: <Widget>[
-              Image.network(_media[index].getPosterUrl())
-            ],
-          );
+          return MediaListItem(media: _media[index]);
         },
       ),
     );

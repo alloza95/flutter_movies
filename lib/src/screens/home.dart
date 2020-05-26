@@ -12,7 +12,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TMDB Apii'),
+        title: Text('TMDB Api'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search, color: Colors.white),
