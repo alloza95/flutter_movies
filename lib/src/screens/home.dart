@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_tmdb_app/src/commons/http_request.dart';
+import 'package:movie_tmdb_app/src/widgets/media_list.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -7,17 +7,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  @override
-  void initState() {
-    super.initState();
-    _loadJson();
-  }
-
-  _loadJson() async{
-    String data = await HttpHandler().fetchMovies();
-    print(data);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +18,11 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.search, color: Colors.white),
             onPressed: () {},
           )
+        ],
+      ),
+      body: PageView(
+        children: <Widget>[
+          MediaList()
         ],
       ),
       drawer: _getDrawer(),
