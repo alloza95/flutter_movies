@@ -30,20 +30,44 @@ class MediaListItem extends StatelessWidget {
                     height: 55
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        child: Text(media.title,
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            width: 250,
+                            child: Text(media.title,
+                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis
+                            ),
+                          ),
+                          Row(children: <Widget>[
+                            Text(media.getReleaseYear().toString()),
+                            Icon(Icons.calendar_today)
+                          ],)
+                        ],
                       ),
-                      Container(
-                        child: Text(media.getGenres(),
-                          style: TextStyle(color: Colors.white),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            width: 250,
+                            child: Text(media.getGenres(),
+                              style: TextStyle(color: Colors.white),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,),
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Text(media.voteAverage.toString()),
+                              Icon(Icons.star)
+                            ],
+                          )
+  
+                        ],
                       )
                     ],
                   ),

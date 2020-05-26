@@ -13,6 +13,13 @@ class Media {
   String getPosterUrl() => getMediumPictureUrl(posterPath);
   String getBackDropUrl() => getLargePictureUrl(backDropPath);
   String getGenres() => getGenreValues(genreIds);
+
+  int getReleaseYear(){
+    if(releaseDate == null || releaseDate == '')
+      return 0;
+
+    return DateTime.parse(releaseDate).year; 
+  }
   
   factory Media(Map jsonMap) {
     return Media.deserialize(jsonMap);
