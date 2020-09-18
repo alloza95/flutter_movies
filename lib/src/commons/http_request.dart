@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movie_tmdb_app/src/commons/constants.dart';
+import 'package:movie_tmdb_app/src/models/cast.dart';
 import 'package:movie_tmdb_app/src/models/media.dart';
 import 'media_provider.dart';
 
@@ -40,6 +41,30 @@ class HttpHandler{
     print(uri);
     return getJson(uri).then((data) =>
       data['results'].map<Media>((item) => Media(item, MediaType.show)).toList()
+    );
+  }
+
+  Future<List<Cast>> fetchCreditMovies(int mediaId) async {
+    var uri = Uri.https(_baseUrl, '3/movie/$mediaId/credits', {
+      'api_key' : apiKey,
+      'page' : '1',
+      'language' : _language
+    });
+    print(uri);
+    return getJson(uri).then((data) =>
+      data['cast'].map<Cast>((item) => Cast(item, MediaType.movie)).toList()
+    );
+  }
+
+  Future<List<Cast>> fetchCreditShows(int mediaId) async {
+    var uri = Uri.https(_baseUrl, '3/tv/$mediaId/credits', {
+      'api_key' : apiKey,
+      'page' : '1',
+      'language' : _language
+    });
+    print(uri);
+    return getJson(uri).then((data) =>
+      data['cast'].map<Cast>((item) => Cast(item, MediaType.show)).toList()
     );
   }
 }

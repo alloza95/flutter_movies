@@ -3,6 +3,7 @@ import 'package:movie_tmdb_app/src/widgets/media_list_item.dart';
 import '../commons/http_request.dart';
 import '../models/media.dart';
 import 'package:movie_tmdb_app/src/commons/media_provider.dart';
+import 'package:movie_tmdb_app/src/widgets/media_detail.dart';
 
 class MediaList extends StatefulWidget {
   final MediaProvider provider;
@@ -45,7 +46,15 @@ class _MediaListState extends State<MediaList> {
       child: ListView.builder(
         itemCount: _media.length,
         itemBuilder: (BuildContext context, int index) {
-          return MediaListItem(media: _media[index]);
+          return FlatButton(
+            child: MediaListItem(media: _media[index]),
+            padding: EdgeInsets.all(1.0),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return MediaDetail(_media[index], widget.provider);
+              }));
+            },
+          );
         },
       ),
     );
