@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_tmdb_app/src/models/media.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class MediaListItem extends StatelessWidget {
   final Media media;
@@ -12,8 +13,8 @@ class MediaListItem extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              FadeInImage.assetNetwork(
-                placeholder: 'assets/placeholder.jpg',
+              FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
                 image: media.getBackDropUrl(),
                 fit: BoxFit.cover,
                 fadeInDuration: Duration(milliseconds: 40),
