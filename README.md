@@ -6,4 +6,8 @@ Personal project to practice. A Flutter app about movies and tv shows.  You can 
 
 Main screen is the movie section. You can see the most popular, upcoming and top rated movies through a Bottom Navigation. You can change to tv shows section through an options menu.
 
+![main screen](https://github.com/alloza95/flutter_movies/blob/master/captures_github/mainscreen.png?raw=true) ![options menu](https://github.com/alloza95/flutter_movies/blob/master/captures_github/optionsmenu.png?raw=true)
+
 ## Detail Screen
+
+![detail screen](https://github.com/alloza95/flutter_movies/blob/master/captures_github/detailscreen.png?raw=true)
