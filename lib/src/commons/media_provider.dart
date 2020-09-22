@@ -1,15 +1,17 @@
 import 'dart:async';
-import 'package:movie_tmdb_app/src/commons/http_request.dart';
+import '../resources/api_provider.dart';
 import 'package:movie_tmdb_app/src/models/cast.dart';
 import 'package:movie_tmdb_app/src/models/media.dart';
+import '../resources/repository.dart';
 
 abstract class MediaProvider{
+  Repository _repository = Repository.get();
   Future<List<Media>> fetchMedia(String category);
   Future<List<Cast>> fetchCast(int mediaId);
 }
 
 class MovieProvider extends MediaProvider{
-  HttpHandler _client = HttpHandler.get();
+  ApiProvider _client = ApiProvider.get();
 
   @override
   Future<List<Media>> fetchMedia(String category){
@@ -18,12 +20,12 @@ class MovieProvider extends MediaProvider{
 
   @override
   Future<List<Cast>> fetchCast(int mediaId) {
-    return _client.fetchCreditMovies(mediaId);
+    return _repository.fetchCasts(mediaId, MediaType.movie);
   }
 }
 
 class ShowProvider extends MediaProvider{
-  HttpHandler _client = HttpHandler.get();
+  ApiProvider _client = ApiProvider.get();
 
   @override
   Future<List<Media>> fetchMedia(String category){
@@ -32,7 +34,7 @@ class ShowProvider extends MediaProvider{
 
   @override
   Future<List<Cast>> fetchCast(int mediaId) {
-    return _client.fetchCreditShows(mediaId);
+    return _repository.fetchCasts(mediaId, MediaType.show);
   }
 }
 

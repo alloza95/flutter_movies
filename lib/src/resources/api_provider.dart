@@ -4,14 +4,15 @@ import 'package:http/http.dart' as http;
 import 'package:movie_tmdb_app/src/commons/constants.dart';
 import 'package:movie_tmdb_app/src/models/cast.dart';
 import 'package:movie_tmdb_app/src/models/media.dart';
-import 'media_provider.dart';
+import 'package:movie_tmdb_app/src/resources/resource_provider.dart';
+import '../commons/media_provider.dart';
 
-class HttpHandler{
-  static final _httpHandler = new HttpHandler();
+class ApiProvider implements ResourceProvider{
+  static final _httpHandler = new ApiProvider();
   final String _baseUrl = 'api.themoviedb.org';
   final String _language = 'es-ES';
 
-  static HttpHandler get(){
+  static ApiProvider get(){
     return _httpHandler;
   }
 
@@ -45,6 +46,7 @@ class HttpHandler{
   }
 
   Future<List<Cast>> fetchCreditMovies(int mediaId) async {
+    print('${mediaId.toString()} lectura de TMDB para movies');
     var uri = Uri.https(_baseUrl, '3/movie/$mediaId/credits', {
       'api_key' : apiKey,
       'page' : '1',
@@ -52,19 +54,23 @@ class HttpHandler{
     });
     print(uri);
     return getJson(uri).then((data) =>
-      data['cast'].map<Cast>((item) => Cast(item, MediaType.movie)).toList()
+      data['cast'].map<Cast>((item) => Cast(item, MediaType.movie, mediaId)).toList()
     );
   }
 
-  Future<List<Cast>> fetchCreditShows(int mediaId) async {
-    var uri = Uri.https(_baseUrl, '3/tv/$mediaId/credits', {
+  Future<List<Cast>> fetchCasts(int mediaId, MediaType mediaType) async {
+    print('${mediaId.toString()} lectura de TMDB para movies');
+    final String endpoint = (mediaType == MediaType.movie ? "movie" : "tv");
+    var uri = Uri.https(_baseUrl, '3/movie/$mediaId/credits', {
       'api_key' : apiKey,
       'page' : '1',
       'language' : _language
     });
     print(uri);
     return getJson(uri).then((data) =>
-      data['cast'].map<Cast>((item) => Cast(item, MediaType.show)).toList()
+      data['cast'].map<Cast>((item) => Cast(item, MediaType.movie, mediaId)).toList()
     );
   }
 }
+
+final ApiProvider apiProvider = new ApiProvider();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_tmdb_app/src/widgets/media_list_item.dart';
-import '../commons/http_request.dart';
+import '../resources/api_provider.dart';
 import '../models/media.dart';
 import 'package:movie_tmdb_app/src/commons/media_provider.dart';
 import 'package:movie_tmdb_app/src/widgets/media_detail.dart';
